@@ -22,7 +22,7 @@ public class HistoriaDAO {
     
     @Transactional(rollbackFor = {ServicioExcepcion.class})
     public List<Historia> listar() throws ServicioExcepcion {
-        return em.createNamedQuery("Destino.findAll").getResultList();
+        return em.createNamedQuery("Historia.findAll").getResultList();
     }
     
     @Transactional(rollbackFor = {ServicioExcepcion.class})

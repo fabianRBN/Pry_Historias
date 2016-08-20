@@ -21,6 +21,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -64,7 +65,16 @@ public class Historia implements Serializable {
     @JoinColumn(name = "id_lugar", referencedColumnName = "id_lugar")
     @ManyToOne(optional = false)
     private Lugar idLugar;
+    @Transient
+    private int lugarID;
 
+    public int getLugarID() {
+        return lugarID;
+    }
+
+    public void setLugarID(int lugarID) {
+        this.lugarID = lugarID;
+    }
     public Historia() {
     }
 

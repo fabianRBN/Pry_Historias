@@ -23,7 +23,7 @@ public class LugarDAO {
     @Transactional(rollbackFor = {ServicioExcepcion.class})
     public List<Lugar> listar() throws ServicioExcepcion {
         em.getEntityManagerFactory().getCache().evictAll();
-        return em.createNamedQuery("Empleado.findAll").getResultList();
+        return em.createNamedQuery("Lugar.findAll").getResultList();
     }
 
     @Transactional(rollbackFor = {ServicioExcepcion.class})

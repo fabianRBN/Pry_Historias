@@ -30,11 +30,9 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Men&uacute; del Sistema<span class="caret"></span></a>
                                 <ul class="dropdown-menu" aria-labelledby="themes">
-                                    <li><a href="${pageContext.request.contextPath}/oficina.htm">Oficinas</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/empleado.htm">Empleados</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/vehiculo.htm">Veh&iacute;culos</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/destino.htm">Destinos</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/reserva.htm">Reservas</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/lugar.htm">Lugares</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/historia.htm">Historias</a></li>
+                                    
                                 </ul>
                             </li>
                         </ul>
