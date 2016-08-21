@@ -6,19 +6,20 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="../template.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Listado de Lugares</title>
+        <title>Listado de Historias</title>
     </head>
     <body>
         <br /> <br /> <br />
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>Lugares</h1>
+                    <h1>Historias</h1>
                 </div>
 
                 <div class="col-md-6">
@@ -45,7 +46,8 @@
                         <th class="active">Id</th>
                         <th class="active">Nombre</th>
                         <th class="active">Descripcion</th>
-                        <th class="active">Fecha de Fundacion</th>
+                        <th class="active">Fecha de la Historia</th>
+                        <th class="active">Lugar</th>
                         <th class="active"></th>
                         <th class="active"></th>
                     </tr>
@@ -54,22 +56,25 @@
                     <c:forEach items="${requestScope.resultado}" var="d">
                         <tr>
                             <td>
-                                ${d.empleadoid}
+                                ${d.idHistoria}
                             </td>                            
                             <td>
-                                ${d.oficina.nombre}
+                                ${d.nombreHistoria}
                             </td> 
                             <td>
-                                ${d.nombre}
+                                ${d.descripcionHistoria}
                             </td>
                             <td>
-                                ${d.apellido}
+                                <fmt:formatDate pattern="MM/dd/yyyy" value="${d.fechaHistoria}" />
                             </td> 
                             <td>
-                                <a href="${pageContext.request.contextPath}/empleado/editar/${d.empleadoid}.htm" class="btn btn-primary btn-xs">Editar</a>
+                                ${d.idLugar.nombreLugar}
                             </td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/empleado/eliminar/${d.empleadoid}.htm" class="btn btn-danger btn-xs">Eliminar</a>
+                                <a href="${pageContext.request.contextPath}/empleado/editar/${d.idHistoria}.htm" class="btn btn-primary btn-xs">Editar</a>
+                            </td>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/empleado/eliminar/${d.idHistoria}.htm" class="btn btn-danger btn-xs">Eliminar</a>
                             </td>
                         </tr>
                     </c:forEach>

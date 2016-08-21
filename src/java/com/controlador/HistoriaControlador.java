@@ -36,7 +36,7 @@ public class HistoriaControlador {
         try {
             List<Historia> resultado = historiaDAO.listar();
             m.addAttribute("resultado", resultado);
-            return "Destino/listado";
+            return "Historia/listado";
         } catch (ServicioExcepcion ex) {
             m.addAttribute("err", ex.getMessage());
             return "error";

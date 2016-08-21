@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Descripcion: </label>
                     <div class="col-lg-6">
-                        <form:input class="form-control" path="descripcionLugar" placeholder="Ingrese el Apellido" />
+                        <form:textarea class="form-control" path="descripcionLugar" placeholder="Ingrese el Apellido" />
                     </div>
                 </div>
 

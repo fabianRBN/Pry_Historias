@@ -8,14 +8,21 @@ package com.controlador;
 import com.modelo.Lugar;
 import com.servicio.LugarDAO;
 import com.servicio.ServicioExcepcion;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -51,4 +58,30 @@ public class LugarControlador {
         lugarDAO.crear(lugar);
         return listar(m);
     }
+    @RequestMapping(value = "/editar/{idLugar}", method = RequestMethod.GET)
+    public String editarVista(@PathVariable("idLugar") String id, Model m) {
+        int idLugar = Integer.parseInt(id);
+        Lugar resultado = this.lugarDAO.consultar(idLugar);
+        m.addAttribute("resultado", resultado);
+        Lugar lugar = new Lugar();
+        m.addAttribute("lugar",lugar);
+        return "Lugar/editar";
+    }
+    
+    @RequestMapping(value = "/editar", method = RequestMethod.POST)
+    public String editar(@ModelAttribute("lugar")Lugar lugar, Model m) throws ParseException {
+        try {
+            this.lugarDAO.actualizar(lugar);
+            m.addAttribute("tipoMensaje", true);
+            m.addAttribute("mensaje", "Registro de empleado actualizado con éxito");
+            return listar(m);
+        } catch (ServicioExcepcion ex) {
+            m.addAttribute("tipoMensaje", false);
+            m.addAttribute("mensaje", ex.getMessage());
+            return "error";
+        }
+    }
+    
+    
+
 }
