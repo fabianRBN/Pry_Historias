@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package com.servicio;
+import com.modelo.Historia;
 import com.modelo.Lugar;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,8 +29,17 @@ public class LugarDAO {
     }
 
     @Transactional(rollbackFor = {ServicioExcepcion.class})
-    public void crear(Lugar r) throws ServicioExcepcion {
+    public void crear(Lugar r, Collection<Historia> historias) throws ServicioExcepcion {
+       
+        
         em.persist(r);
+        
+        for (Historia historia : historias) {
+            historia.setIdLugar(r);
+            em.persist(historia);
+        }
+        
+      
     }
 
     @Transactional(rollbackFor = {ServicioExcepcion.class})
