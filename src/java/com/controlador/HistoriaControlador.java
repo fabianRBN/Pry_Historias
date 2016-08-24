@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/historia")
 public class HistoriaControlador {
     
+    
        @RequestMapping(value = "/listado", method = RequestMethod.GET)
     public ModelAndView verHistorias(ModelAndView m, HttpSession session) throws ServicioExcepcion {
         Lugar lugar = (Lugar) session.getAttribute("lugar");
