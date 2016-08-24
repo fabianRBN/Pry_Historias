@@ -14,6 +14,7 @@
             <tr>
                 <td>${r.nombreHistoria}</td>
                 <td>${r.descripcionHistoria}</td>
+                <td>${r.fechaHistoria}</td>
                 <td></td>
             </tr>
         </c:forEach>

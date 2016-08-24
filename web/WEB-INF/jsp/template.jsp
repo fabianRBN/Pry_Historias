@@ -31,7 +31,7 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Men&uacute; del Sistema<span class="caret"></span></a>
                                 <ul class="dropdown-menu" aria-labelledby="themes">
                                     <li><a href="${pageContext.request.contextPath}/lugar.htm">Lugares</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/historia.htm">Historias</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/historia/listarHistoria.htm">Historias</a></li>
                                     
                                 </ul>
                             </li>

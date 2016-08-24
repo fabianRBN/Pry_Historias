@@ -42,7 +42,7 @@
                                     <h3 align="center">Historias</h3>
                                     <center><img src="imagenes/empleado.jpg" width="180" height="180" /></center><br />
                                     <p>Consultas, Altas, Bajas y Cambios de una Historia</p>
-                                    <p><a class="btn btn-primary" href="historia.htm">Historias <span class="glyphicon glyphicon-chevron-right"></span></a></p>
+                                    <p><a class="btn btn-primary" href="listadoHistoria.htm">Historias <span class="glyphicon glyphicon-chevron-right"></span></a></p>
                                 </div>
                             </div>
                         </div>
