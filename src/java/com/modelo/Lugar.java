@@ -6,6 +6,7 @@
 package com.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -144,6 +145,12 @@ public class Lugar implements Serializable {
     @Override
     public String toString() {
         return "com.modelo.Lugar[ idLugar=" + idLugar + " ]";
+    }
+    public void addHistoria(Historia h) {
+        if (this.historiaCollection == null) {
+            this.historiaCollection = new ArrayList<>();
+        }
+        this.historiaCollection.add(h);
     }
     
 }

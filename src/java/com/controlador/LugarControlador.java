@@ -5,6 +5,7 @@
  */
 package com.controlador;
 
+import com.modelo.Historia;
 import com.modelo.Lugar;
 import com.servicio.LugarDAO;
 import com.servicio.ServicioExcepcion;
@@ -14,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,15 +50,21 @@ public class LugarControlador {
 
    
     @RequestMapping(value = "/crear", method = RequestMethod.GET)
-    public String crear(ModelMap m){
+    public String crear(ModelMap m, HttpSession session){
+        Historia historia = new Historia();
         Lugar lugar = new Lugar();
+        session.setAttribute("lugar", lugar);
         m.addAttribute("lugar",lugar);
+        m.addAttribute("historia",historia);
         return "Lugar/crear";
     }
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String guardar(@ModelAttribute("lugar") Lugar lugar, Model m) throws ServicioExcepcion {
-        lugarDAO.crear(lugar);
+    public String guardar(@ModelAttribute("lugar") Lugar lugar, Model m,HttpSession session) throws ServicioExcepcion {
+        //Recuperamos el lugar
+        Lugar lugarSession = (Lugar)session.getAttribute("lugar");
+        lugarDAO.crear(lugar,lugarSession.getHistoriaCollection());
         return listar(m);
+        
     }
     @RequestMapping(value = "/editar/{idLugar}", method = RequestMethod.GET)
     public String editarVista(@PathVariable("idLugar") String id, Model m) {

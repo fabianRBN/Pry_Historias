@@ -17,8 +17,40 @@
         <script>
             $(function () {
                 $("#txtFecha").datepicker();
-                verInsumos();
+                verHistorias();
             });
+            function verHistorias(){
+                $("#divHistorias").empty();
+                                
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/historia/listado.htm",
+                    type:"GET",                    
+                    success: function(response){
+                         $("#divHistorias").html(response);
+                    },
+                    error: function(error){
+                         $("#divHistorias").html(error);
+                     }
+                });
+            }            
+            
+            function agregarHistoria(){
+                $("#divHistorias").empty();                                
+                var data = $("#frmHistoria").serialize();
+                console.log(data);
+                
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/historia/crear.htm",
+                    type:"POST",
+                    data: data,
+                    success: function(response){
+                         $("#divHistorias").html(response);
+                    },
+                    error: function(error){
+                         $("#divHistorias").html(error);
+                     }
+                });
+            }
         </script>
         <title>Nuevo Lugar</title>
     </head>
@@ -59,6 +91,36 @@
                     </div>
                 </div>
             </form:form>
+            <table id="tblTest" class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-md-7">Nombre</th>
+                        <th class="col-md-3">Descripcion</th>
+                        <th class="col-md-2">Fecha</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr>
+                        <form:form cssClass="form-horizontal" id="frmHistoria" method="POST" modelAttribute="historia" action="${pageContext.request.contextPath}/historia/crear.htm">
+                            <td>
+                                <form:input cssClass="form-control" type="text" path="nombreHistoria" />    
+                            </td>
+                            <td>
+                                <form:input cssClass="form-control" type="text" path="descripcionHistoria" />    
+                            </td>
+                            <td>
+                                <form:input cssClass="form-control" type="text" path="fechaHistoria" />    
+                            </td>                                
+                            <td>
+                                <span class="btn btn-success glyphicon glyphicon-plus" onclick="agregarHistoria();"></span>
+                            </td>
+                        </form:form>
+                    </tr>
+                </tbody>
+              </table>
+            
+            <div id="divHistorias"></div>
+                
         </div>
     </body>
 </html>
