@@ -89,6 +89,26 @@ public class LugarControlador {
             return "error";
         }
     }
+     @RequestMapping(value = "/eliminar/{idLugar}", method = RequestMethod.GET)
+    public String eliminarVista(@PathVariable("idLugar") String id, Model m) {
+        int idLugar = Integer.parseInt(id);
+        Lugar resultado = this.lugarDAO.consultar(idLugar);
+        m.addAttribute("resultado", resultado);
+        return "Lugar/eliminar";
+    }
+
+    @RequestMapping(value = "/eliminar/{idLugar}", method = RequestMethod.POST)
+    public String eliminar(@PathVariable("idLugar") String id, Model m) {
+        try {
+            int idLugar = Integer.parseInt(id);
+            this.lugarDAO.eliminar(idLugar);
+            return "Lugar/exito";
+        } catch (ServicioExcepcion ex) {
+            m.addAttribute("err", ex.getMessage());
+            return "error";
+        }
+    }
+    
     
     
 

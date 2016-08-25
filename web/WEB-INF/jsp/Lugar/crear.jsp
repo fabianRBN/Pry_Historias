@@ -62,24 +62,24 @@
                 <hr/>
 
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">Nombre: </label>
+                    <label class="col-lg-2 control-label">Nombre del Lugar: </label>
                     <div class="col-lg-6">
-                        <form:input class="form-control" path="nombreLugar" placeholder="Ingrese el Nombre" />
+                        <form:input class="form-control" path="nombreLugar" placeholder="Ingrese el Nombre del Lugar" />
                        
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">Descripcion: </label>
+                    <label class="col-lg-2 control-label">Descripcion del Lugar: </label>
                     <div class="col-lg-6">
-                        <form:textarea class="form-control" path="descripcionLugar" placeholder="Ingrese el Apellido" />
+                        <form:textarea class="form-control" path="descripcionLugar" placeholder="Ingrese la Descripcion" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="txtsalario" class="col-lg-2 control-label">Fecha de Fundacion: </label>
                     <div class="col-lg-6">
-                        <form:input id="txtFecha" class="form-control" path="fechaLugar" placeholder="Ingrese Salario" />
+                        <form:input id="txtFecha" class="form-control" path="fechaLugar" placeholder="Ingrese la fecha" />
                     </div>
                 </div>
                     
@@ -94,8 +94,8 @@
             <table id="tblTest" class="table table-condensed table-hover">
                 <thead>
                     <tr>
-                        <th class="col-md-7">Nombre</th>
-                        <th class="col-md-3">Descripcion</th>
+                        <th class="col-md-2">Nombre de la Historia</th>
+                        <th class="col-md-8">Descripcion</th>
                         <th class="col-md-2">Fecha</th>
                     </tr>
                 </thead>    
@@ -106,7 +106,7 @@
                                 <form:input cssClass="form-control" type="text" path="nombreHistoria" />    
                             </td>
                             <td>
-                                <form:input cssClass="form-control" type="text" path="descripcionHistoria" />    
+                                <form:textarea cssClass="form-control" type="text" path="descripcionHistoria" />    
                             </td>
                             <td>
                                 <form:input cssClass="form-control" type="text" path="fechaHistoria" />    
