@@ -9,12 +9,14 @@ import com.modelo.Historia;
 import com.modelo.Lugar;
 import com.servicio.LugarDAO;
 import com.servicio.ServicioExcepcion;
+import com.validador.LugarValidador;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import org.springframework.validation.BindingResult;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +37,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LugarControlador {
     @Autowired
     private LugarDAO lugarDAO;
+    @Autowired
+    private LugarValidador lugarValidador;
     
      @RequestMapping(method = RequestMethod.GET)
     public String listar(Model m) {
@@ -59,11 +63,23 @@ public class LugarControlador {
         return "Lugar/crear";
     }
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String guardar(@ModelAttribute("lugar") Lugar lugar, Model m,HttpSession session) throws ServicioExcepcion {
-        //Recuperamos el lugar
-        Lugar lugarSession = (Lugar)session.getAttribute("lugar");
-        lugarDAO.crear(lugar,lugarSession.getHistoriaCollection());
-        return listar(m);
+    public String guardar(@ModelAttribute("lugar") Lugar lugar, Model m,HttpSession session, BindingResult result) throws ServicioExcepcion {
+        try {
+            lugarValidador.validate(lugar,result);
+            if(result.hasErrors()){
+                return "Lugar/crear";
+            }else{
+               //Recuperamos el lugar
+            Lugar lugarSession = (Lugar)session.getAttribute("lugar");
+            lugarDAO.crear(lugar,lugarSession.getHistoriaCollection());
+            return listar(m); 
+            }
+            
+        } catch (Exception ex) {
+            m.addAttribute("err", ex.getMessage());
+            return "error";
+        }
+
         
     }
     @RequestMapping(value = "/editar/{idLugar}", method = RequestMethod.GET)
